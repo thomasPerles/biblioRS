@@ -20,36 +20,55 @@
 			</plugin>
 		</plugins>
 	</build>
+	<properties>
+		<versionJersey>2.38</versionJersey>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.m2i</groupId>
 			<artifactId>biblioCommon</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<!-- ***************************   JERSEY  ******************************* -->
 		<dependency>
 			<groupId>org.glassfish.jersey.core</groupId>
 			<artifactId>jersey-common</artifactId>
-			<version>2.29</version>
+			<version>${versionJersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.containers</groupId>
 			<artifactId>jersey-container-servlet</artifactId>
-			<version>2.29</version>
+			<version>${versionJersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-bean-validation</artifactId>
-			<version>2.29</version>
+			<version>${versionJersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>2.27</version>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>${versionJersey}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
-			<version>2.29</version>
+			<version>${versionJersey}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-jaxb</artifactId>
+			<version>2.38</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>5.3.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-spring5</artifactId>
+			<version>${versionJersey}</version>
 		</dependency>
 	</dependencies>
 </project>
