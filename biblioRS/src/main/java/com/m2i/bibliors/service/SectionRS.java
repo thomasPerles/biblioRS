@@ -15,62 +15,62 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.m2i.bibliocommon.bo.Livre;
+import com.m2i.bibliocommon.bo.Section;
 import com.m2i.bibliocommon.exception.BiblioException;
-import com.m2i.bibliocommon.service.ILivreService;
+import com.m2i.bibliocommon.service.ISectionService;
 import com.m2i.bibliors.exception.BiblioNotFoundException;
 
 @Service
-@Path("/livre")
-public class LivreRS {
+@Path("/section")
+public class SectionRS {
 
 	@Autowired
-	private ILivreService livreService;
+	private ISectionService sectionService;
 
-	public LivreRS() {
+	public SectionRS() {
 		super();
 	}
 
-	public ILivreService getLivreService() {
-		return this.livreService;
+	public ISectionService getSectionService() {
+		return this.sectionService;
 	}
 
-	public void setLivreService(ILivreService livreService) {
-		this.livreService = livreService;
+	public void setSectionService(ISectionService sectionService) {
+		this.sectionService = sectionService;
 	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Livre> findAll() {
-		List<Livre> livres;
+	public List<Section> findAll() {
+		List<Section> sections;
 		try {
-			livres = this.livreService.findAll();
+			sections = this.sectionService.findAll();
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livres;
+		return sections;
 	}
 
 	@GET
 	@Path("{ id }")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre get(@PathParam("id") Integer id) {
-		Livre livre;
+	public Section get(@PathParam("id") Integer id) {
+		Section section;
 		try {
-			livre = this.livreService.get(id);
+			section = this.sectionService.get(id);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return section;
 	}
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public void delete(Livre livre) {
+	public void delete(Section section) {
 		try {
-			this.livreService.delete(livre);
+			this.sectionService.delete(section);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
@@ -82,7 +82,7 @@ public class LivreRS {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public void delete(@PathParam("id") Integer id) {
 		try {
-			this.livreService.delete(new Livre(id));
+			this.sectionService.delete(new Section(id));
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
@@ -92,27 +92,27 @@ public class LivreRS {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre save(Livre livre) {
+	public Section save(Section section) {
 		try {
-			this.livreService.save(livre);
+			this.sectionService.save(section);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return section;
 	}
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre update(Livre livre) {
+	public Section update(Section section) {
 		try {
-			this.livreService.update(livre);
+			this.sectionService.update(section);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return section;
 	}
 
 }

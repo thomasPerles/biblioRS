@@ -15,62 +15,62 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.m2i.bibliocommon.bo.Livre;
+import com.m2i.bibliocommon.bo.Classification;
 import com.m2i.bibliocommon.exception.BiblioException;
-import com.m2i.bibliocommon.service.ILivreService;
+import com.m2i.bibliocommon.service.IClassificationService;
 import com.m2i.bibliors.exception.BiblioNotFoundException;
 
 @Service
-@Path("/livre")
-public class LivreRS {
+@Path("/classification")
+public class ClassificationRS {
 
 	@Autowired
-	private ILivreService livreService;
+	private IClassificationService classificationService;
 
-	public LivreRS() {
+	public ClassificationRS() {
 		super();
 	}
 
-	public ILivreService getLivreService() {
-		return this.livreService;
+	public IClassificationService getClassificationService() {
+		return this.classificationService;
 	}
 
-	public void setLivreService(ILivreService livreService) {
-		this.livreService = livreService;
+	public void setClassificationService(IClassificationService classificationService) {
+		this.classificationService = classificationService;
 	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public List<Livre> findAll() {
-		List<Livre> livres;
+	public List<Classification> findAll() {
+		List<Classification> classifications;
 		try {
-			livres = this.livreService.findAll();
+			classifications = this.classificationService.findAll();
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livres;
+		return classifications;
 	}
 
 	@GET
 	@Path("{ id }")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre get(@PathParam("id") Integer id) {
-		Livre livre;
+	public Classification get(@PathParam("id") Integer id) {
+		Classification classification;
 		try {
-			livre = this.livreService.get(id);
+			classification = this.classificationService.get(id);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return classification;
 	}
 
 	@DELETE
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public void delete(Livre livre) {
+	public void delete(Classification classification) {
 		try {
-			this.livreService.delete(livre);
+			this.classificationService.delete(classification);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
@@ -82,7 +82,7 @@ public class LivreRS {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public void delete(@PathParam("id") Integer id) {
 		try {
-			this.livreService.delete(new Livre(id));
+			this.classificationService.delete(new Classification(id));
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
@@ -92,27 +92,27 @@ public class LivreRS {
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre save(Livre livre) {
+	public Classification save(Classification classification) {
 		try {
-			this.livreService.save(livre);
+			this.classificationService.save(classification);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return classification;
 	}
 
 	@PUT
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Livre update(Livre livre) {
+	public Classification update(Classification classification) {
 		try {
-			this.livreService.update(livre);
+			this.classificationService.update(classification);
 		} catch (BiblioException e) {
 			e.printStackTrace();
 			throw new BiblioNotFoundException();
 		}
-		return livre;
+		return classification;
 	}
 
 }
